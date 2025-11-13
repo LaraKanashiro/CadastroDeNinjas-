@@ -2,11 +2,17 @@ package dev.java10x.CadastroDeNinjas.Ninjas;
 
 import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Table(name = "tb_cadastro")
+@NoArgsConstructor // @NoArgsConstructor --> gera automaticamnete um construtor vazio (necessário para JPA)
+@AllArgsConstructor // @AllArgsConstructor --> gera automaticamnete um construtor com todos os atributos da classe
+@Data // @Data --> cria automaticamnte os getters e os setters
 public class NinjaModel {
 
     @Id
@@ -21,39 +27,7 @@ public class NinjaModel {
 
     // @ManyToOne --> um ninja tem uma unica missao
     @ManyToOne
-    @JoinColumn(name = "missoes_id") // Foreing Key ou chave estrangeira 
+    @JoinColumn(name = "missoes_id") // Foreing Key ou chave estrangeira
     private MissoesModel missoes;
 
-    public NinjaModel() {
-    }
-
-    public NinjaModel(String nome, String email, int idade) {
-        this.nome = nome;
-        this.email = email;
-        this.idade = idade;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
 }
